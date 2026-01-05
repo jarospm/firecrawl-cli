@@ -1,0 +1,44 @@
+{
+  "name": "firecrawl-cli",
+  "version": "0.1.0",
+  "description": "CLI tool for Firecrawl API - scrape, search, map, crawl, and AI-powered data gathering",
+  "type": "module",
+  "bin": {
+    "firecrawl-cli": "./src/cli.ts"
+  },
+  "scripts": {
+    "dev": "tsx src/cli.ts",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src/",
+    "lint:fix": "eslint src/ --fix",
+    "format": "prettier --write src/",
+    "format:check": "prettier --check src/",
+    "check": "npm run typecheck && npm run lint && npm run format:check"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "keywords": [
+    "firecrawl",
+    "scraping",
+    "web-scraping",
+    "cli",
+    "search"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@mendable/firecrawl-js": "^4.10.0",
+    "cmd-ts": "^0.14.3",
+    "dotenv": "^17.2.3"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.2",
+    "@types/node": "^25.0.3",
+    "eslint": "^9.39.2",
+    "eslint-config-prettier": "^10.1.8",
+    "prettier": "^3.7.4",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.51.0"
+  }
+}
