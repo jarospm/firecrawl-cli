@@ -11,7 +11,22 @@ npm run lint                # Lint with ESLint
 npm run lint:fix            # Lint and auto-fix
 npm run format              # Format with Prettier
 npm run check               # Run all checks (typecheck + lint + format:check)
+npm run test:smoke          # Run smoke tests (costs API credits - see below)
 ```
+
+## Smoke Tests
+
+Smoke tests verify all commands work end-to-end using real API calls. **Do not run automatically** - always ask the user which tests to run since each call costs credits.
+
+```bash
+npm run test:smoke                 # All 5 commands (~5 min, includes slow crawl)
+npm run test:smoke -- --skip-crawl # 4 commands (~20s, recommended)
+npm run test:smoke -- --fast       # 3 commands (skips crawl + agent)
+npm run test:smoke -- --core       # 2 commands (scrape + agent only)
+npm run test:smoke -- --dry        # Preview commands without running
+```
+
+Use `--skip-crawl` for regular checks. The `crawl` command has significant queue latency (~4 min) even for single pages due to async job polling.
 
 After `npm link`, the CLI is available globally as `firecrawl-cli`.
 
