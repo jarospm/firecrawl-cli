@@ -7,7 +7,7 @@ import { run, subcommands, binary } from 'cmd-ts';
 
 // Load from ~/.config/firecrawl/.env if FIRECRAWL_API_KEY not already set
 if (!process.env['FIRECRAWL_API_KEY']) {
-  config({ path: join(homedir(), '.config', 'firecrawl', '.env') });
+  config({ path: join(homedir(), '.config', 'firecrawl', '.env'), quiet: true });
 }
 import { scrape } from './commands/scrape.js';
 import { search } from './commands/search.js';
