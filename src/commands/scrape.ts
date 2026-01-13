@@ -6,6 +6,7 @@ import {
   setVerbose,
   status,
   success,
+  detail,
   error,
 } from '../lib/progress.js';
 import { parseFormats } from '../lib/parse.js';
@@ -35,6 +36,10 @@ export const scrape = command({
       long: 'wait',
       description: 'Additional wait time in ms for JavaScript rendering',
     }),
+    fresh: flag({
+      long: 'fresh',
+      description: 'Force fresh scrape, bypassing Firecrawl cache',
+    }),
     json: flag({
       long: 'json',
       description: 'Output as JSON instead of markdown',
@@ -48,7 +53,7 @@ export const scrape = command({
       description: 'Show detailed progress information',
     }),
   },
-  handler: async ({ url, formats, onlyMain, wait, json, quiet, verbose }) => {
+  handler: async ({ url, formats, onlyMain, wait, fresh, json, quiet, verbose }) => {
     setQuiet(quiet);
     setVerbose(verbose);
 
@@ -70,10 +75,15 @@ export const scrape = command({
         waitFor = parsed;
       }
 
+      if (fresh) {
+        detail('Forcing fresh scrape (bypassing cache)');
+      }
+
       const response = await client.scrape(url, {
         formats: formatList as ('markdown' | 'html' | 'links' | 'screenshot')[],
         onlyMainContent: onlyMain || undefined,
         waitFor,
+        ...(fresh && { maxAge: 0 }), // Only set maxAge when forcing fresh
       });
 
       success('Scraped 1 page');

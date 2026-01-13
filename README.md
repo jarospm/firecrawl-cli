@@ -61,6 +61,9 @@ firecrawl-cli scrape https://example.com --only-main
 
 # Multiple formats
 firecrawl-cli scrape https://example.com --formats markdown,html,links
+
+# Force fresh scrape (bypass Firecrawl's cache)
+firecrawl-cli scrape https://example.com --fresh
 ```
 
 **Options:**
@@ -68,6 +71,7 @@ firecrawl-cli scrape https://example.com --formats markdown,html,links
 - `--formats <types>` - Content formats: markdown, html, links, screenshot (default: markdown)
 - `--only-main` - Extract only main content
 - `--wait <ms>` - Wait time for JavaScript rendering
+- `--fresh` - Force fresh scrape, bypassing Firecrawl's cache
 - `--json` - Output as JSON
 - `--quiet` - Suppress progress messages
 
